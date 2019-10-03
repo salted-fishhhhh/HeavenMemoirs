@@ -10,9 +10,7 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
-    @IBAction func supportButtonDidClick(_ sender: UIButton) {
-        HKTools().toAppStore(vc: self)
-    }
+
     @IBAction func beginButtonDidClick(_ sender: UIButton) {
         self.permissions()
     }

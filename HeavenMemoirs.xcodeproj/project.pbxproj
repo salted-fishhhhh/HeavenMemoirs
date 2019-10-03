@@ -52,7 +52,6 @@
 		127872371F7776CC00F1068D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127872361F7776CC00F1068D /* ViewController.swift */; };
 		1278723A1F7776CC00F1068D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127872381F7776CC00F1068D /* Main.storyboard */; };
 		1278723F1F7776CC00F1068D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1278723D1F7776CC00F1068D /* LaunchScreen.storyboard */; };
-		128BEBAE1F98AC9C002C58E1 /* HKTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BEBAD1F98AC9C002C58E1 /* HKTools.swift */; };
 		12AAC78E1FBD379900A6EC5A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAC7871FBD379800A6EC5A /* Constants.swift */; };
 		12AAC78F1FBD379900A6EC5A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAC7881FBD379800A6EC5A /* Extensions.swift */; };
 		12AAC7911FBD379900A6EC5A /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAC78A1FBD379800A6EC5A /* Permissions.swift */; };
@@ -145,7 +144,6 @@
 		127872391F7776CC00F1068D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1278723E1F7776CC00F1068D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		127872401F7776CC00F1068D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		128BEBAD1F98AC9C002C58E1 /* HKTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKTools.swift; sourceTree = "<group>"; };
 		12AAC7871FBD379800A6EC5A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		12AAC7881FBD379800A6EC5A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		12AAC78A1FBD379800A6EC5A /* Permissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
@@ -294,7 +292,6 @@
 				127872401F7776CC00F1068D /* Info.plist */,
 				123335A71F9854CC0070C868 /* HeavenMemoirs-Bridging-Header.h */,
 				12E05EC81F95F5F400B1D250 /* Model */,
-				12E05EC31F95EB1F00B1D250 /* Tools */,
 				12D3A2DE1F77775100B1D6CD /* Views */,
 				12D3A2DD1F77774900B1D6CD /* Controllers */,
 				12D3A2DC1F77771D00B1D6CD /* Ohter */,
@@ -373,14 +370,6 @@
 			path = Rescouces;
 			sourceTree = "<group>";
 		};
-		12E05EC31F95EB1F00B1D250 /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				128BEBAD1F98AC9C002C58E1 /* HKTools.swift */,
-			);
-			path = Tools;
-			sourceTree = "<group>";
-		};
 		12E05EC81F95F5F400B1D250 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,7 +421,7 @@
 			attributes = {
 				CLASSPREFIX = HK;
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = HeiKki;
 				TargetAttributes = {
 					1278722E1F7776CC00F1068D = {
@@ -449,6 +438,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 127872261F7776CC00F1068D;
 			productRefGroup = 127872301F7776CC00F1068D /* Products */;
@@ -521,7 +511,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		3BB8CBD0F8CAD5DB8355DE4A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -595,7 +585,6 @@
 				123335A01F9854A50070C868 /* NSBundle+TZImagePicker.m in Sources */,
 				12E05ECC1F95F7CB00B1D250 /* RescouceManager.swift in Sources */,
 				125028B81FFDEF8900553778 /* PermissionScope.swift in Sources */,
-				128BEBAE1F98AC9C002C58E1 /* HKTools.swift in Sources */,
 				1233359E1F9854A50070C868 /* TZLocationManager.m in Sources */,
 				1233359C1F9854A50070C868 /* TZProgressView.m in Sources */,
 				123335981F9854A50070C868 /* UIView+Layout.m in Sources */,
@@ -657,6 +646,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -664,6 +654,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -715,6 +706,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -722,6 +714,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -759,7 +752,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8TJ9GDFV36;
+				DEVELOPMENT_TEAM = 93US3CSM62;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HeavenMemoirs/Party",
@@ -780,7 +773,7 @@
 					"\"NVActivityIndicatorView\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = HeavenMemoirs;
+				PRODUCT_BUNDLE_IDENTIFIER = HeavenMemoirs.tt.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/HeavenMemoirs/HeavenMemoirs-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -798,7 +791,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8TJ9GDFV36;
+				DEVELOPMENT_TEAM = 93US3CSM62;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HeavenMemoirs/Party",
@@ -819,7 +812,7 @@
 					"\"NVActivityIndicatorView\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = HeavenMemoirs;
+				PRODUCT_BUNDLE_IDENTIFIER = HeavenMemoirs.tt.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/HeavenMemoirs/HeavenMemoirs-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

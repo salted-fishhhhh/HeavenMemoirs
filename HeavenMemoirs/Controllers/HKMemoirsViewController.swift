@@ -15,19 +15,14 @@ import Photos
 
 class HKMemoirsViewController: UIViewController, ARSCNViewDelegate {
 
-    @IBAction func supportButtonDidClick(_ sender: UIButton) {
-        HKTools().toAppStore(vc: self)
-    }
     @IBOutlet weak var replayButtonRight: NSLayoutConstraint!
     @objc func back() {
         navigationController?.popViewController(animated: true)
     }
     @IBOutlet var sceneView: HKARSCNView!
     // MARK: Button
-    @IBOutlet weak var replayButton: UIButton!
     @IBOutlet weak var mainButton: UIButton!
     @IBOutlet var smailButtons: [UIButton]!
-    @IBOutlet weak var stopReplayButton: UIButton!
     var selectNode: SCNNode?
 
     @IBOutlet weak var timeView: UIView!
@@ -38,6 +33,8 @@ class HKMemoirsViewController: UIViewController, ARSCNViewDelegate {
 
     let rescouceManager = RescouceManager.share
     let rescoucceConfiguration = RescouceConfiguration.share
+    let kScreenWidth = UIScreen.main.bounds.size.width
+    let kScreenHeight = UIScreen.main.bounds.size.height
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,16 +61,16 @@ class HKMemoirsViewController: UIViewController, ARSCNViewDelegate {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIView.animate(withDuration: 2.0) {
-            self.replayButton.alpha = self.replayButton.alpha < 0.5 ? 1 : 0
-            self.mainButton.alpha =   self.replayButton.alpha < 0.5 ? 0.1 : 1
-
-            for button in self.smailButtons {
-                button.alpha =  self.replayButton.alpha
-            }
-        }
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        UIView.animate(withDuration: 2.0) {
+//            self.replayButton.alpha = self.replayButton.alpha < 0.5 ? 1 : 0
+//            self.mainButton.alpha =   self.replayButton.alpha < 0.5 ? 0.1 : 1
+//
+//            for button in self.smailButtons {
+//                button.alpha =  self.replayButton.alpha
+//            }
+//        }
+//    }
 }
 
 // UI+动画
@@ -164,23 +161,6 @@ extension HKMemoirsViewController {
         sender.isSelected = !sender.isSelected
     }
 
-    @IBAction func replayButtonDidClick(_ sender: UIButton) {
-        startRecoder()
-    }
-
-    @IBAction func stopReplayButtonDidClick(_ sender: UIButton) {
-        stopRecoder()
-    }
-    @IBAction func shareButtonDidClick(_ sender: UIButton) {
-        UMSocialUIManager.showShareMenuViewInWindow(platformSelectionBlock: { (type, _) in
-            let messgaeObject = UMSocialMessageObject()
-            let shareObject = UMShareWebpageObject.shareObject(withTitle: "We Are", descr: "有一款有意思的APP ,让我带你去一个梦幻的地方", thumImage: UIImage(named: "Icon"))
-            shareObject?.webpageUrl = "https://itunes.apple.com/cn/app/weare/id1304227680?mt=8"
-            messgaeObject.shareObject = shareObject
-            UMSocialManager.default().share(to: type, messageObject: messgaeObject, currentViewController: self, completion: { (_, _) in
-            })
-        })
-    }
     @IBAction func backButtonDidClick(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
@@ -203,151 +183,151 @@ extension HKMemoirsViewController {
 }
 
 // MARK: ReplayKit
-extension HKMemoirsViewController: RPScreenRecorderDelegate, RPPreviewViewControllerDelegate {
-    func startRecoder() {
-        self.mainButton.isSelected = false
-        RPScreenRecorder.shared().startRecording(handler: nil)
-        RPScreenRecorder.shared().delegate = self
-        self.replayButtonRight.constant = (kScreenWidth - stopReplayButton.bounds.size.width ) * 0.5
-        UIView.animate(withDuration: 2.5, animations: {
-            for button in self.smailButtons {
-                button.alpha = 0
-            }
-            self.mainButton.alpha = 0
-            self.stopReplayButton.alpha = 1
-            self.view.layoutIfNeeded()
-            self.timeView.alpha = 1
-        })
-    }
-    func stopRecoder() {
-
-        RPScreenRecorder.shared().stopRecording { (vc, error) in
-            if error != nil {
-            vc?.previewControllerDelegate = self
-            vc?.title = "We Are"
-            self.present(vc!, animated: true, completion: nil)
-            }
-        }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            self.replayButtonRight.constant = 85
-            UIView.animate(withDuration: 2.5, animations: {
-                for button in self.smailButtons {
-                    button.alpha = 1
-                }
-                self.mainButton.alpha = 1
-                self.stopReplayButton.alpha = 0
-                self.view.layoutIfNeeded()
-                self.timeView.alpha = 0
-            })
-        }
-    }
-    func previewController(_ previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
-        print(activityTypes)
-        //取消
-        if activityTypes.count == 0 {
-            previewController.dismiss(animated: true, completion: nil)
-        }
-        //保存
-        if activityTypes.contains("com.apple.UIKit.activity.SaveToCameraRoll") {
-            ITTPromptView .showMessage("视频已保存在相册", andFrameY: 0)
-            previewController.dismiss(animated: true, completion: nil)
-            //检测到您刚刚保存了视频 是否想要分享
-            let delay = DispatchTime.now() + .seconds(2)
-            DispatchQueue.main.asyncAfter(deadline: delay) {
-                self.outputVideo()
-            }
-        }
-    }
-    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
-        print(previewController)
-    }
-    func screenRecorder(_ screenRecorder: RPScreenRecorder, didStopRecordingWith previewViewController: RPPreviewViewController?, error: Error?) {
-        if error != nil {
-            DispatchQueue.main.async {
-                let string = error?.localizedDescription
-                ITTPromptView .showMessage(string, andFrameY: 0)
-                //录制期间失败
-                self.showFailReplay()
-            }
-        }
-    }
-    //录制失败
-    func showFailReplay() {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "HKExplainViewController")
-        self.navigationController?.pushViewController(vc, animated: true)
-        self.replayButtonRight.constant = 85
-        for button in self.smailButtons {
-            button.alpha = 1
-        }
-        self.mainButton.alpha = 1
-        UIView.animate(withDuration: 2.5) {
-            self.stopReplayButton.alpha = 0
-            self.view.layoutIfNeeded()
-        }
-    }
-    func screenRecorderDidChangeAvailability(_ screenRecorder: RPScreenRecorder) {
-        print(screenRecorder)
-    }
-    // MARK: 提取视频
-    func outputVideo() {
-        let smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .albumRegular, options: nil)
-        for i in 0..<smartAlbums.count {
-            let assetCollection = smartAlbums[i]
-            let assetsFetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(in: assetCollection, options: nil)
-            if assetCollection.localizedTitle == "视频" {
-                if assetsFetchResult.count > 0 {
-                    let phAsset: PHAsset = assetsFetchResult.lastObject!
-                    _ = PHVideoRequestOptions()
-
-                    let assetResources = PHAssetResource.assetResources(for: phAsset)
-                    var resource: PHAssetResource?
-
-                    for assetRes in assetResources {
-                        resource = assetRes
-                    }
-                    let PATH_MOVIE_FILE = NSTemporaryDirectory().appending(replayVideoFileName)
-                    try? FileManager.default.removeItem(atPath: PATH_MOVIE_FILE)
-                    PHAssetResourceManager.default().writeData(for: resource!, toFile: URL.init(fileURLWithPath: PATH_MOVIE_FILE), options: nil, completionHandler: { (error) in
-                        if error != nil {
-                        } else {
-                            DispatchQueue.main.async {
-                                self.showShareAlert()
-                            }
-                        }
-                    })
-                }
-            }
-        }
-    }
-}
+//extension HKMemoirsViewController: RPScreenRecorderDelegate, RPPreviewViewControllerDelegate {
+//    func startRecoder() {
+//        self.mainButton.isSelected = false
+//        RPScreenRecorder.shared().startRecording(handler: nil)
+//        RPScreenRecorder.shared().delegate = self
+//        self.replayButtonRight.constant = (kScreenWidth - stopReplayButton.bounds.size.width ) * 0.5
+//        UIView.animate(withDuration: 2.5, animations: {
+//            for button in self.smailButtons {
+//                button.alpha = 0
+//            }
+//            self.mainButton.alpha = 0
+//            self.stopReplayButton.alpha = 1
+//            self.view.layoutIfNeeded()
+//            self.timeView.alpha = 1
+//        })
+//    }
+//    func stopRecoder() {
+//
+//        RPScreenRecorder.shared().stopRecording { (vc, error) in
+//            if error != nil {
+//            vc?.previewControllerDelegate = self
+//            vc?.title = "We Are"
+//            self.present(vc!, animated: true, completion: nil)
+//            }
+//        }
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+//            self.replayButtonRight.constant = 85
+//            UIView.animate(withDuration: 2.5, animations: {
+//                for button in self.smailButtons {
+//                    button.alpha = 1
+//                }
+//                self.mainButton.alpha = 1
+//                self.stopReplayButton.alpha = 0
+//                self.view.layoutIfNeeded()
+//                self.timeView.alpha = 0
+//            })
+//        }
+//    }
+//    func previewController(_ previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
+//        print(activityTypes)
+//        //取消
+//        if activityTypes.count == 0 {
+//            previewController.dismiss(animated: true, completion: nil)
+//        }
+//        //保存
+//        if activityTypes.contains("com.apple.UIKit.activity.SaveToCameraRoll") {
+//            ITTPromptView .showMessage("视频已保存在相册", andFrameY: 0)
+//            previewController.dismiss(animated: true, completion: nil)
+//            //检测到您刚刚保存了视频 是否想要分享
+//            let delay = DispatchTime.now() + .seconds(2)
+//            DispatchQueue.main.asyncAfter(deadline: delay) {
+//                self.outputVideo()
+//            }
+//        }
+//    }
+//    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+//        print(previewController)
+//    }
+//    func screenRecorder(_ screenRecorder: RPScreenRecorder, didStopRecordingWith previewViewController: RPPreviewViewController?, error: Error?) {
+//        if error != nil {
+//            DispatchQueue.main.async {
+//                let string = error?.localizedDescription
+//                ITTPromptView .showMessage(string, andFrameY: 0)
+//                //录制期间失败
+//                self.showFailReplay()
+//            }
+//        }
+//    }
+//    //录制失败
+//    func showFailReplay() {
+//        let sb = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = sb.instantiateViewController(withIdentifier: "HKExplainViewController")
+//        self.navigationController?.pushViewController(vc, animated: true)
+//        self.replayButtonRight.constant = 85
+//        for button in self.smailButtons {
+//            button.alpha = 1
+//        }
+//        self.mainButton.alpha = 1
+//        UIView.animate(withDuration: 2.5) {
+//            self.stopReplayButton.alpha = 0
+//            self.view.layoutIfNeeded()
+//        }
+//    }
+//    func screenRecorderDidChangeAvailability(_ screenRecorder: RPScreenRecorder) {
+//        print(screenRecorder)
+//    }
+//    // MARK: 提取视频
+//    func outputVideo() {
+//        let smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .albumRegular, options: nil)
+//        for i in 0..<smartAlbums.count {
+//            let assetCollection = smartAlbums[i]
+//            let assetsFetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(in: assetCollection, options: nil)
+//            if assetCollection.localizedTitle == "视频" {
+//                if assetsFetchResult.count > 0 {
+//                    let phAsset: PHAsset = assetsFetchResult.lastObject!
+//                    _ = PHVideoRequestOptions()
+//
+//                    let assetResources = PHAssetResource.assetResources(for: phAsset)
+//                    var resource: PHAssetResource?
+//
+//                    for assetRes in assetResources {
+//                        resource = assetRes
+//                    }
+//                    let PATH_MOVIE_FILE = NSTemporaryDirectory().appending(replayVideoFileName)
+//                    try? FileManager.default.removeItem(atPath: PATH_MOVIE_FILE)
+//                    PHAssetResourceManager.default().writeData(for: resource!, toFile: URL.init(fileURLWithPath: PATH_MOVIE_FILE), options: nil, completionHandler: { (error) in
+//                        if error != nil {
+//                        } else {
+//                            DispatchQueue.main.async {
+//                                self.showShareAlert()
+//                            }
+//                        }
+//                    })
+//                }
+//            }
+//        }
+//    }
+//}
 
 // MARK: Share
-extension HKMemoirsViewController {
-    func showShareAlert() {
-        let alertVc = UIAlertController.init(title: "", message: "分享视频", preferredStyle: .alert)
-        let alertAction0 = UIAlertAction.init(title: "分享", style: .default) { (_) in
-            self.share()
-        }
-        let alertAction1 = UIAlertAction.init(title: "取消", style: .cancel) { (_) in
-        }
-        alertVc.addAction(alertAction0)
-        alertVc.addAction(alertAction1)
-        self.present(alertVc, animated: true, completion: nil)
-    }
-    func share() {
-        let PATH_MOVIE_FILE = NSTemporaryDirectory().appending("REPLAY_WEARE.MP4")
-        let url = URL.init(fileURLWithPath: PATH_MOVIE_FILE)
-        self.documentController = UIDocumentInteractionController(url: url)
-        let vc = UIApplication.shared.keyWindow?.rootViewController
-        self.documentController?.presentOpenInMenu(from: UIScreen.main.bounds, in: vc!.view, animated: true)
-        self.documentController?.delegate = self
-    }
-}
-
-extension HKMemoirsViewController: UIDocumentInteractionControllerDelegate {
-    func documentInteractionControllerDidDismissOpenInMenu(_ controller: UIDocumentInteractionController) {
-        let PATH_MOVIE_FILE = NSTemporaryDirectory().appending(replayVideoFileName)
-        try? FileManager.default.removeItem(atPath: PATH_MOVIE_FILE)
-    }
-}
+//extension HKMemoirsViewController {
+//    func showShareAlert() {
+//        let alertVc = UIAlertController.init(title: "", message: "分享视频", preferredStyle: .alert)
+//        let alertAction0 = UIAlertAction.init(title: "分享", style: .default) { (_) in
+//            self.share()
+//        }
+//        let alertAction1 = UIAlertAction.init(title: "取消", style: .cancel) { (_) in
+//        }
+//        alertVc.addAction(alertAction0)
+//        alertVc.addAction(alertAction1)
+//        self.present(alertVc, animated: true, completion: nil)
+//    }
+//    func share() {
+//        let PATH_MOVIE_FILE = NSTemporaryDirectory().appending("REPLAY_WEARE.MP4")
+//        let url = URL.init(fileURLWithPath: PATH_MOVIE_FILE)
+//        self.documentController = UIDocumentInteractionController(url: url)
+//        let vc = UIApplication.shared.keyWindow?.rootViewController
+//        self.documentController?.presentOpenInMenu(from: UIScreen.main.bounds, in: vc!.view, animated: true)
+//        self.documentController?.delegate = self
+//    }
+//}
+//
+//extension HKMemoirsViewController: UIDocumentInteractionControllerDelegate {
+//    func documentInteractionControllerDidDismissOpenInMenu(_ controller: UIDocumentInteractionController) {
+//        let PATH_MOVIE_FILE = NSTemporaryDirectory().appending(replayVideoFileName)
+//        try? FileManager.default.removeItem(atPath: PATH_MOVIE_FILE)
+//    }
+//}
