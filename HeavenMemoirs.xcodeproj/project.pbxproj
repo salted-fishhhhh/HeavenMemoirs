@@ -35,7 +35,6 @@
 		124AC8411FA9DF7E009773CA /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124AC8401FA9DF7E009773CA /* CoreTelephony.framework */; };
 		124AC8431FA9DF86009773CA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 124AC8421FA9DF86009773CA /* libz.tbd */; };
 		124AC8451FA9DF8E009773CA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 124AC8441FA9DF8E009773CA /* libsqlite3.tbd */; };
-		124AC86B1FA9FDBA009773CA /* HKExplainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124AC86A1FA9FDBA009773CA /* HKExplainViewController.swift */; };
 		124EA0781F778BA700AEECA1 /* HKMemoirsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124EA0771F778BA700AEECA1 /* HKMemoirsViewController.swift */; };
 		124F78F11F97337900A9180B /* HKARSCNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124F78F01F97337900A9180B /* HKARSCNView.swift */; };
 		124F78F51F97579C00A9180B /* HKImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124F78F41F97579C00A9180B /* HKImageCollectionViewCell.swift */; };
@@ -47,7 +46,6 @@
 		1259C4931FAB42A1002BEE2D /* Beautiful In White.aac in Resources */ = {isa = PBXBuildFile; fileRef = 1259C4921FAB42A1002BEE2D /* Beautiful In White.aac */; };
 		12606A831FAC329A00B796C4 /* 花 が とぶ 飛ぶ.aac in Resources */ = {isa = PBXBuildFile; fileRef = 12606A811FAC329A00B796C4 /* 花 が とぶ 飛ぶ.aac */; };
 		12606A841FAC329A00B796C4 /* I Remember.aac in Resources */ = {isa = PBXBuildFile; fileRef = 12606A821FAC329A00B796C4 /* I Remember.aac */; };
-		12606A861FAC357500B796C4 /* HKMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12606A851FAC357500B796C4 /* HKMeViewController.swift */; };
 		127872331F7776CC00F1068D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127872321F7776CC00F1068D /* AppDelegate.swift */; };
 		127872371F7776CC00F1068D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127872361F7776CC00F1068D /* ViewController.swift */; };
 		1278723A1F7776CC00F1068D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127872381F7776CC00F1068D /* Main.storyboard */; };
@@ -71,6 +69,7 @@
 		12F55C721F9DF2DD00EF0556 /* HKMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F55C711F9DF2DD00EF0556 /* HKMacro.swift */; };
 		12FAB3F71F78A86F0019FAB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12FAB3F61F78A86F0019FAB6 /* Assets.xcassets */; };
 		3D995A406F2ED03F9EE14346 /* Pods_HeavenMemoirs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10C0A88C55DD53B14C91CA5F /* Pods_HeavenMemoirs.framework */; };
+		BE27DC0C2345F68B00663BCD /* ARQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE27DC0B2345F68B00663BCD /* ARQuizViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,7 +122,6 @@
 		124AC8401FA9DF7E009773CA /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		124AC8421FA9DF86009773CA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		124AC8441FA9DF8E009773CA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		124AC86A1FA9FDBA009773CA /* HKExplainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKExplainViewController.swift; sourceTree = "<group>"; };
 		124EA0771F778BA700AEECA1 /* HKMemoirsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKMemoirsViewController.swift; sourceTree = "<group>"; };
 		124F78F01F97337900A9180B /* HKARSCNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKARSCNView.swift; sourceTree = "<group>"; };
 		124F78F41F97579C00A9180B /* HKImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 		1259C4921FAB42A1002BEE2D /* Beautiful In White.aac */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Beautiful In White.aac"; sourceTree = "<group>"; };
 		12606A811FAC329A00B796C4 /* 花 が とぶ 飛ぶ.aac */ = {isa = PBXFileReference; lastKnownFileType = file; path = "花 が とぶ 飛ぶ.aac"; sourceTree = "<group>"; };
 		12606A821FAC329A00B796C4 /* I Remember.aac */ = {isa = PBXFileReference; lastKnownFileType = file; path = "I Remember.aac"; sourceTree = "<group>"; };
-		12606A851FAC357500B796C4 /* HKMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKMeViewController.swift; sourceTree = "<group>"; };
 		1278722F1F7776CC00F1068D /* HeavenMemoirs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeavenMemoirs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		127872321F7776CC00F1068D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		127872361F7776CC00F1068D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +162,7 @@
 		12FAB3F61F78A86F0019FAB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8666FEB0B97DB0BA1522B266 /* Pods-HeavenMemoirs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenMemoirs.release.xcconfig"; path = "Pods/Target Support Files/Pods-HeavenMemoirs/Pods-HeavenMemoirs.release.xcconfig"; sourceTree = "<group>"; };
 		9AD8AA1F4098C7480439C6F2 /* Pods-HeavenMemoirs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeavenMemoirs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HeavenMemoirs/Pods-HeavenMemoirs.debug.xcconfig"; sourceTree = "<group>"; };
+		BE27DC0B2345F68B00663BCD /* ARQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARQuizViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,11 +325,10 @@
 			children = (
 				127872361F7776CC00F1068D /* ViewController.swift */,
 				124EA0771F778BA700AEECA1 /* HKMemoirsViewController.swift */,
+				BE27DC0B2345F68B00663BCD /* ARQuizViewController.swift */,
 				12E05EBD1F95B2A100B1D250 /* HKSelectImageViewController.swift */,
 				120351E61F9C441E0074679A /* HKPanoramaSelectViewController.swift */,
 				12E5BE321F9CBF8D00FD3F1F /* HKMusicSelectTableViewController.swift */,
-				124AC86A1FA9FDBA009773CA /* HKExplainViewController.swift */,
-				12606A851FAC357500B796C4 /* HKMeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -562,10 +559,10 @@
 				124F78F11F97337900A9180B /* HKARSCNView.swift in Sources */,
 				1233359B1F9854A50070C868 /* TZVideoPlayerController.m in Sources */,
 				123335A41F9854A50070C868 /* TZPhotoPreviewController.m in Sources */,
-				124AC86B1FA9FDBA009773CA /* HKExplainViewController.swift in Sources */,
 				123335A21F9854A50070C868 /* TZGifPhotoPreviewController.m in Sources */,
 				124AC8391FA9C7D8009773CA /* ITTPromptView.m in Sources */,
 				12E5BE331F9CBF8D00FD3F1F /* HKMusicSelectTableViewController.swift in Sources */,
+				BE27DC0C2345F68B00663BCD /* ARQuizViewController.swift in Sources */,
 				123335A61F9854A50070C868 /* TZImagePickerController.m in Sources */,
 				123335A11F9854A50070C868 /* TZPhotoPreviewCell.m in Sources */,
 				124AC8371FA9C7D8009773CA /* PoppingBaseView.m in Sources */,
@@ -590,7 +587,6 @@
 				123335981F9854A50070C868 /* UIView+Layout.m in Sources */,
 				12AAC7931FBD379900A6EC5A /* Structs.swift in Sources */,
 				1233359D1F9854A50070C868 /* TZAssetModel.m in Sources */,
-				12606A861FAC357500B796C4 /* HKMeViewController.swift in Sources */,
 				12E05EC01F95DC4300B1D250 /* HKImageTableViewCell.swift in Sources */,
 				12E05EBE1F95B2A100B1D250 /* HKSelectImageViewController.swift in Sources */,
 				124F78F51F97579C00A9180B /* HKImageCollectionViewCell.swift in Sources */,

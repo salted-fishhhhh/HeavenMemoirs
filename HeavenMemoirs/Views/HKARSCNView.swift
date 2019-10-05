@@ -55,8 +55,8 @@ class HKARSCNView: ARSCNView {
         let photoRingNode = SCNNode()
         photoRingNode.position = SCNVector3Zero
         self.scene.rootNode.addChildNode(photoRingNode)
-        let photoW: CGFloat       = 2.8
-        let photoH: CGFloat       = photoW * 0.618
+        let photoW: CGFloat = 2.8
+        let photoH: CGFloat = photoW * 0.618
         let radius: CGFloat = 0.02
         for index in 0..<L {
             let photo = SCNPlane(width: photoW, height: photoH)
@@ -79,7 +79,7 @@ class HKARSCNView: ARSCNView {
         let photoRingNode = SCNNode()
         photoRingNode.position = SCNVector3Zero
         self.scene.rootNode.addChildNode(photoRingNode)
-        let boxW: CGFloat       = 0.36
+        let boxW: CGFloat = 0.36
         for index in 0..<L {
             let box = SCNBox(width: boxW, height: boxW, length: boxW, chamferRadius: 0)
             if rescoucceConfiguration.box_Random {
@@ -118,7 +118,7 @@ class HKARSCNView: ARSCNView {
         self.scene.rootNode.addChildNode(textRingNode)
         var index: Int = 0
         var angle: Float = 0
-        for t in text.characters {
+        for t in text {
             index += 1
             let str = String(t)
             let text = SCNText(string: str, extrusionDepth: 0.1)

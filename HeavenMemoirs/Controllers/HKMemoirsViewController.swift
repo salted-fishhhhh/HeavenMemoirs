@@ -15,7 +15,6 @@ import Photos
 
 class HKMemoirsViewController: UIViewController, ARSCNViewDelegate {
 
-    @IBOutlet weak var replayButtonRight: NSLayoutConstraint!
     @objc func back() {
         navigationController?.popViewController(animated: true)
     }
@@ -28,8 +27,8 @@ class HKMemoirsViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var timeView: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var redView: UIView!
-    var documentController: UIDocumentInteractionController?
-    let replayVideoFileName: String = "REPLAY_WEARE.MP4"
+//    var documentController: UIDocumentInteractionController?
+//    let replayVideoFileName: String = "REPLAY_WEARE.MP4"
 
     let rescouceManager = RescouceManager.share
     let rescoucceConfiguration = RescouceConfiguration.share
@@ -61,16 +60,16 @@ class HKMemoirsViewController: UIViewController, ARSCNViewDelegate {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        UIView.animate(withDuration: 2.0) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIView.animate(withDuration: 2.0) {
 //            self.replayButton.alpha = self.replayButton.alpha < 0.5 ? 1 : 0
-//            self.mainButton.alpha =   self.replayButton.alpha < 0.5 ? 0.1 : 1
-//
-//            for button in self.smailButtons {
-//                button.alpha =  self.replayButton.alpha
-//            }
-//        }
-//    }
+            self.mainButton.alpha =   self.mainButton.alpha < 0.5 ? 0.1 : 1
+
+            for button in self.smailButtons {
+                button.alpha =  self.mainButton.alpha
+            }
+        }
+    }
 }
 
 // UI+动画

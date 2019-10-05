@@ -47,6 +47,9 @@ class HKSelectImageViewController: UIViewController {
     let rescouceManager = RescouceManager.share
     ///配置管理
     let rescoucceConfiguration = RescouceConfiguration.share
+    let kScreenWidth = UIScreen.main.bounds.size.width
+    let kScreenHeight = UIScreen.main.bounds.size.height
+
     var box_Delete: Bool = false {
         didSet {
             for cell in collectionView_Box.visibleCells {
@@ -295,10 +298,6 @@ extension HKSelectImageViewController {
         textColorButton = sender
         textColorButton?.isSelected = true
         rescouceManager.textColor = sender.currentTitle!
-    }
-    // MARK: 评分
-    @IBAction func supportButtonDidClick(_ sender: UIButton) {
-              HKTools().toAppStore(vc: self)
     }
 }
 // MARK: Swith
